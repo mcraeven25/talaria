@@ -18,25 +18,18 @@ const Checkout = () => {
                 <Header>
                     <span>Product</span>
                 </Header>
-                 <Header>
-                    <span>Description</span>
-                </Header>
-                 <Header>
-                    <span>Quantity</span>
-                </Header>
-                 <Header>
-                    <span>Price</span>
-                </Header>
+                <Header>
+                    Details
+                 </Header>
                  <Header>
                     <span>Remove</span>
                 </Header>
             </CheckoutHeader>
             {
-                
-                    cartItems.map((cartItem) => <CheckoutItem key={cartItem.id} cartItem={cartItem} />)
+                    cartItems.map((cartItem) => <CheckoutItem key={cartItem.cartId} cartItem={cartItem} />)
             }
             <Total>Total: &#8369;{cartTotal.toLocaleString()}</Total>
-            <PaymentForm />
+            {/* <PaymentForm /> */}
             </CheckoutContainer>
            
      );

@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-export const ProductCardContainer = styled.div`
+export const BaseProductCardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   height: 400px;
   align-items: center;
   position: relative;
+  margin:10px;
 
   button {
     width: 80%;
@@ -26,6 +27,17 @@ export const ProductCardContainer = styled.div`
       display: flex;
     }
   }
+     @media screen and (max-width:800px){   
+      height: 200px;
+      margin:0;
+
+           button{
+            top:50%;
+          }
+           
+      }
+
+   
 `;
 
 export const Image = styled.img`
@@ -33,7 +45,7 @@ export const Image = styled.img`
   height: 95%;
   object-fit: scale-down;
   margin-bottom: 5px;
-  border: 1px solid black;
+
   background-color: #f7f7f7;
 `;
 
@@ -45,12 +57,37 @@ export const Footer = styled.div`
   padding-right: 20px;
   padding-left: 5px;
   flex-direction: column;
+   text-align:center;
+  
 `;
 
 export const Name = styled.span`
   width: 100%;
+  font-weight:bold;
 `;
 
 export const Price = styled.span`
-  width: 10%;
+  width: 100%;
+ 
+`;
+
+export const ShopProductContainer = styled(BaseProductCardContainer)`
+  width:40%;
+  margin: 0 20px 0 0;
+
+  button{
+    top:170px;
+  }
+  
+  span{
+    width:100%;
+  }
+      @media screen and (max-width:800px){
+           width:100%;
+      button {
+        width:40%;
+        top:50%;
+      }
+    
+  }
 `;

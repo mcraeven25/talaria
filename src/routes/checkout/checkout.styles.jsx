@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-export const CheckoutContainer = styled.div`;
+export const CheckoutContainer = styled.div`
 
   width: 55%;
   min-height: 90vh;
@@ -9,11 +9,13 @@ export const CheckoutContainer = styled.div`;
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
-
- 
-    
-  
-
+   @media screen and (max-width:800px){
+             margin:0;
+             padding:0 20px;
+                width: 90%;
+                margin-top:60px;
+            
+        }
  
 `
 export const CheckoutHeader = styled.div`
@@ -23,16 +25,28 @@ export const CheckoutHeader = styled.div`
     justify-content: space-between;
     border-bottom: 1px solid darkgrey;
 
+     @media screen and (max-width:800px){
+             margin:0;
+               width: 100%;
+        
+        }
+
 `;
 
 export const Header = styled.div`
-
+      margin-left:18px;
       text-transform: capitalize;
       width: 23%;
 
       &:last-child {
         width: 8%;
       }
+
+         @media screen and (max-width:800px){
+   
+               width: 100%;
+            
+        }
     
 `;
 
@@ -41,4 +55,6 @@ export const Total = styled.span`
     margin-left: auto;
     font-size: 36px;
 `;
+
+
 

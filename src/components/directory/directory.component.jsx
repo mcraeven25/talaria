@@ -1,51 +1,55 @@
+import { useState, useEffect, Fragment } from "react";
+import { useSelector } from 'react-redux';
+
 import BrandsContainer from "../brands-container/brands-container.component";
+import Recommendation from "../recommendation/recommendation.component";
+import Carousel from "../carousel/carousel.component";
 
-import { DirectoryContainer } from "./directory.styles";
+import { feature, popular } from "../../utils/data-utils";
 
-const brands = [
-  {
-    id: 1,
-    name: "Nike",
-    imageURL:
-      "https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png",
-    route: "shop/nike",
-  },
-  {
-    id: 2,
-    name: "Jordan",
-    imageURL:
-      "https://logos-world.net/wp-content/uploads/2020/04/Air-Jordan-Logo.png",
-    route: "shop/jordan",
-  },
-  {
-    id: 3,
-    name: "adidas",
-    imageURL: "https://pngimg.com/uploads/adidas/adidas_PNG8.png",
-    route: "shop/adidas",
-  },
-  {
-    id: 4,
-    name: "Under Armour",
-    imageURL:
-      "https://logos-world.net/wp-content/uploads/2020/04/Under-Armour-Logo.png",
-    route: "shop/under armour",
-  },
-  {
-    id: 5,
-    name: "Puma",
-    imageURL:
-      "https://logos-world.net/wp-content/uploads/2020/04/Puma-Logo-1980-present.png",
-    route: "shop/puma",
-  },
-];
+
+import { DirectoryContainer, Home } from "./directory.styles";
+
+import { selectProductsMap } from "../../store/products/products.selector";
+
+import { brands } from "../../utils/data-utils";
+
+
 
 const Directory = () => {
+
+  const productsMap = useSelector(selectProductsMap);
+  const [productsArray, setProducts] = useState([]);
+ 
+  useEffect(() => {
+    setProducts([])
+     // eslint-disable-next-line
+   Object.keys(productsMap).map(key => {
+     const productMap = productsMap[key];
+     // eslint-disable-next-line
+   Object.keys(productMap).map((category) => {
+     const categories = productMap[category];
+     // eslint-disable-next-line
+   Object.keys(categories).map((product) => {
+     const products = categories[product];
+      setProducts(productsArray => [...productsArray, products])
+   })
+    })
+   })
+}, [productsMap]);
+ 
+  
   return (
+    <Home>
     <DirectoryContainer>
       {brands.map((brand) => (
         <BrandsContainer key={brand.id} brand={brand} />
       ))}
-    </DirectoryContainer>
+      </DirectoryContainer>
+          <Carousel products={productsArray}/>
+      <Recommendation title={"Featured Sneakers"} products={productsArray} items={feature } />
+      <Recommendation title={"Most Popular"} products={productsArray} items={popular }/>
+      </Home>
   );
 };
 

@@ -12,6 +12,7 @@ export const CartItemContainer = styled.div`
 
 export const Image = styled.img`
  width: 40%;
+
 `;
 
 
@@ -22,10 +23,11 @@ export const ItemDetails = styled.div`
     align-items: flex-start;
     justify-content: center;
     padding: 10px 20px;
+
 `;
 
 export const Details = styled.span`
-  font-size: 1rem;
+  font-size: .9rem;
 `;
 
 

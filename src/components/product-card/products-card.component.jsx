@@ -1,45 +1,54 @@
 import { useDispatch, useSelector } from "react-redux";
 
+import {useNavigate} from "react-router-dom"
+
 import {selectCartItems} from '../../store/cart/cart.selector'
 import { addItemToCart } from "../../store/cart/cart.action";
 
 import {
-  ProductCardContainer,
+  BaseProductCardContainer,
   Image,
   Footer,
   Name,
   Price,
+  ShopProductContainer,
 } from "./product-card.styles";
-
-
 
 import Button, { BUTTON_TYPE } from "../button/button.component";
 
+export const PRODUCT_TYPE = {
+  base: "base",
+  shop: "shop",
+};
 
-const ProductCard = ({ product }) => {
+const getProduct = (productType = PRODUCT_TYPE.base) =>
+  ({
+    [PRODUCT_TYPE.base]: BaseProductCardContainer,
+    [PRODUCT_TYPE.shop]: ShopProductContainer, 
+  }[productType]);
 
+
+const ProductCard = ({ productType, category, ...attributes }) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
-  const cartItems = useSelector(selectCartItems)
+  const { imageUrl, price, name, id } = category;
 
-  const { imageUrl, price, name } = product;
+  const navigateHandler = () => navigate(`/product/${id}`);
 
-
-    
-    const addProduct = () => {
-       dispatch(addItemToCart(cartItems, product))
+  const prices = parseInt(price)
   
-    }
-  return (
+  const CustomProductCardContainer = getProduct(productType);
 
-    <ProductCardContainer>
-      <Image src={imageUrl} alt={name} />
+  return (
+    <CustomProductCardContainer {...attributes}>
+      <Image src={imageUrl} alt={name} /> 
       <Footer>
         <Name>{name}</Name>
-        <Price>&#8369;{price.toLocaleString()}</Price>
+        <Price>&#8369;{prices.toLocaleString()}</Price>
       </Footer>
-      <Button buttonType={BUTTON_TYPE.inverted} onClick={addProduct}>Add to cart</Button>
-    </ProductCardContainer>
+      <Button buttonType={BUTTON_TYPE.inverted} onClick={navigateHandler}>Buy Now</Button>
+    </CustomProductCardContainer>
   );
 };
 

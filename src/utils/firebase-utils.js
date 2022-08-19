@@ -107,3 +107,40 @@ export const getCurrentUser = () => {
     );
   });
 };
+
+export const addAddress = async (userAuth, userAddress) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+  const userSnapshot = await getDoc(userDocRef);
+
+  if (userSnapshot.exists()) {
+    try {
+      await setDoc(userDocRef, {
+        address: userAddress,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+};
+
+export const addToCart = async (userAuth, product) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+  const userSnapshot = await getDoc(userDocRef);
+  const userDoc = doc(db, "users", userAuth.uid, "cart");
+
+  const { name, quantity, id, price, size } = product;
+
+  if (userSnapshot.exists()) {
+    try {
+      await setDoc(userDoc, {
+        name,
+        quantity,
+        id,
+        price,
+        size,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+};

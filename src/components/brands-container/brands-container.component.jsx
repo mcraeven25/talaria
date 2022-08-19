@@ -4,12 +4,11 @@ import { BrandContainer, BackGroundImage } from "./brands-container.styles";
 
 const BrandsContainer = ({ brand }) => {
   const { imageURL, route } = brand;
-    const navigate = useNavigate()
-    
-     const navigateHandler = () => navigate(route)
+  const navigate = useNavigate()
+  const navigateHandler = () => navigate(route)
 
     return (
-        <BrandContainer onClick={navigateHandler}>
+   <BrandContainer onClick={navigateHandler}>
       <BackGroundImage style={{ backgroundImage: `url(${imageURL})` }} />
     </BrandContainer>
   );

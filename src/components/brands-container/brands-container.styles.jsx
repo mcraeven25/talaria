@@ -19,7 +19,17 @@ export const BrandContainer = styled.div`
   margin: 0 7.5px 15px;
   flex: 1 1 auto;
 
+     @media screen and (max-width:800px){
+            max-width: 100%;
+           
+        }
+
+
   &:hover {
     cursor: pointer;
+    transform: scale(0.9) translateY(-5px);
   }
+
+  
+
 `;

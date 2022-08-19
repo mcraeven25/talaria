@@ -1,9 +1,8 @@
-import { useContext, useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 
-
-import ProductCard from "../../components/product-card/products-card.component";
+import Products from '../../components/products/products.component'
 import Spinner from "../../components/spinner/spinner.component";
 
 import { selectProductsMap, selectProductIsLoading } from "../../store/products/products.selector";
@@ -11,11 +10,13 @@ import { selectProductsMap, selectProductIsLoading } from "../../store/products/
 import { BrandContainer, Title } from "./brand.styles";
 
 const Brand = () => {
-  const { brand } = useParams();
+  const { brand, category } = useParams();
+  
   const productsMap = useSelector(selectProductsMap);
   const isLoading = useSelector(selectProductIsLoading)
   const [products, setProducts] = useState(productsMap[brand]);
 
+  
   useEffect(() => {
     setProducts(productsMap[brand]);
   }, [brand, productsMap]);
@@ -26,10 +27,12 @@ const Brand = () => {
       {
         isLoading ? (<Spinner />) :
           (<BrandContainer>
-        {products &&
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+            {products &&
+              Object.keys(products).map((names) => {
+                const categories = products[names];
+              
+               return <Products key={names} title={category} categories={categories} />
+        })}
       </BrandContainer>)
       }
       

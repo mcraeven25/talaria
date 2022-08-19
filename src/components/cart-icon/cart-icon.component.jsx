@@ -3,11 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectIscartOpen, selectCartCount } from '../../store/cart/cart.selector'
 import { setIsCartOpen } from '../../store/cart/cart.action'
 
-import { ReactComponent as Icon } from '../../assets/shopping-bag.svg'
-
-
-
-
 import {CartIconContainer,ItemCount,ShoppingIcon} from  './cart-icon.styles.jsx'
 
 

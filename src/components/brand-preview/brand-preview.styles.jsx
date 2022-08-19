@@ -9,13 +9,20 @@ export const BrandPreviewContainer = styled.div`
 
 export const Title = styled(Link)`
   font-size: 28px;
-  margin-bottom: 25px;
   cursor: pointer;
   color: black;
+
+     @media screen and (max-width:800px){   
+    
+      margin-left:5px;
+
+          }
 `;
 
 export const Preview = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 20px;
+  display:flex;
+  padding: 0 10px;
+  flex-direction:column;
 `;
+
+

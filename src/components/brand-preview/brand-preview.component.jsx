@@ -1,25 +1,24 @@
-import { Link } from "react-router-dom";
+import { Fragment } from "react";
 
 import { BrandPreviewContainer, Title, Preview } from "./brand-preview.styles";
+import Category from "../category/category.component";
 
-import ProductCard from "../product-card/products-card.component";
 
 const BrandPreview = ({ title, products }) => {
   return (
-    <div>
       <BrandPreviewContainer>
         <h2>
           <Title to={title}>{title.toUpperCase()}</Title>
         </h2>
-        <Preview>
-          {products
-            .filter((_, idx) => idx < 4)
-            .map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+      <Preview>
+          {Object.keys(products).map((names) => {
+            const categories = products[names];
+            return <Category title={title} key={names} names={names} categories={categories} />
+            })
+          }
         </Preview>
       </BrandPreviewContainer>
-    </div>
+
   );
 };
 

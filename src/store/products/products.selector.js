@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import { useSelector } from "react-redux";
 
 const selectProductReducer = (state) => state.products;
 
@@ -9,9 +10,8 @@ export const selectProducts = createSelector(
 
 export const selectProductsMap = createSelector([selectProducts], (products) =>
   products.reduce((acc, product) => {
-    const { title, items } = product;
-    acc[title.toLowerCase()] = items;
-
+    const { title, category } = product;
+    acc[title.toLowerCase()] = category;
     return acc;
   }, {})
 );

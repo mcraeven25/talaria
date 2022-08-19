@@ -25,6 +25,13 @@ export const BaseButton = styled.button`
     color: black;
     border: 1px solid black;
   }
+
+   @media screen and (max-width:800px){
+          min-width: 130px;
+          padding:0;
+           
+        }
+    
 `;
 
 export const GoogleSignInButton = styled(BaseButton)`
@@ -52,4 +59,7 @@ export const InvertedButton = styled(BaseButton)`
 export const ButtonSpinner = styled(SpinnerContainer)`
   width:30px;
   height:30px;
+`
+export const HideButton = styled(BaseButton)`
+display:none;
 `
